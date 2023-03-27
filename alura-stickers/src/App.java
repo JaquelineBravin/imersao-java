@@ -7,7 +7,6 @@ public class App {
         System.out.println("Hello, World!");
 
         //fazer a conexão HTTP E BUSCAR OS TOP 250 FILMES
-<<<<<<< HEAD
         String url = "gfdgfgfdgdfgddg";
         URI endereco = URI.create(url);
         var client = HttpClient.newHttpClient;
@@ -15,10 +14,8 @@ public class App {
         HttpResponse<String> response = client.send(request, BodyHandlers.ofString());
         String body = response.body();
         System.out.println(body);
-=======
-        String url = "imbd-api.com";
+        String url = "imbd-api.com"
         Httpclient
->>>>>>> 508a71a19f16a96b6a895a81911f4a9aadd8dcbb
 
         // pegar só os dados interessantes (titulo, poster, classificação)
         JsonParser jsonParser = new JsonParser();
