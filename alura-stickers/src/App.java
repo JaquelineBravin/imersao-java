@@ -3,8 +3,8 @@ public class App {
         System.out.println("Hello, World!");
 
         //fazer a conexão HTTP E BUSCAR OS TOP 250 FILMES
-        String url = "";
-        Httpc
+        String url = "imbd-api.com";
+        Httpclient
 
         // pegar só os dados interessantes (titulo, poster, classificação)
         // exibir e manipular 
