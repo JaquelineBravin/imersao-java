@@ -1,13 +1,6 @@
-import java.net.URI;
-import java.net.http.HttpClient;
-import java.net.http.HttpRequest;
-import java.net.http.HttpResponse;
-import java.net.http.HttpResponse.BodyHandlers;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Map;
 import java.io.InputStream;
 import java.net.URL;
+import java.util.List;
 
 public class App {
     public static void main(String[] args) throws Exception {
@@ -20,25 +13,23 @@ public class App {
        
         var http = new ClienteHttp();
         String json = http.buscaDados(url);
-
-        // pegar só os dados interessantes (titulo, poster, classificação)
-        var parser = new JsonParser();
-        List<Map<String, String>> listaDeConteudos = parser.parse(json);
-        System.out.println(listaDeConteudos.size());
         
         // exibir e manipular 
+        var extrator = new ExtratorDeConteudoDaNasa();
+        List<Conteudo> conteudos = extrator.extraiConteudos(json);
+        
         var geradora = new GeradoraDeFigurinhas();
 
         for (int i = 0; i < 3; i++) {
 
-            Conteudo conteudo = conteudo.get(i);
+            Conteudo conteudo = conteudos.get(i);
 
-            InputStream inputStream = new URL(conteudo.urlImagem()).openStream();
-            String nomeArquivo = "saida/" + conteudo.titulo() + ".png";
+            InputStream inputStream = new URL(conteudo.getUrlImagem()).openStream();
+            String nomeArquivo = "saida/" + conteudo.getTitulo() + ".png";
 
             geradora.cria(inputStream, nomeArquivo);
 
-            System.out.println(conteudo.titulo());
+            System.out.println(conteudo.getTitulo());
             System.out.println();
         }
     }

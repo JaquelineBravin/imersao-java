@@ -2,9 +2,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-public class ExtratorDeConteudoDaNasa {
-	
-	public List<Conteudo> extraiConteudos(String json) {
+public class ExtratorConteudoIMDB {
+
+public List<Conteudo> extraiConteudos(String json) {
 		
 		// pegar só os dados interessantes (titulo, poster, classificação)
         var parser = new JsonParser();
@@ -15,13 +15,17 @@ public class ExtratorDeConteudoDaNasa {
         //popular lista de conteudos 
         for (Map<String, String> atributos : listaDeAtributos) {
         	String titulo = atributos.get("title");
-        	String urlImagem = atributos.get("url");
+        	String urlImagem = atributos.get("image");
         	var conteudo = new Conteudo (titulo, urlImagem);
         	
         	conteudos.add(conteudo);
 			
 		}
         
-        return conteudos;
+        return listaDeAtributos.stream()
+        .map(atributos -> new Conteudo(atributos.get("title"), atributos.get("image").replaceAll("(@+)(.*).jpg$", "$1.jpg")))
+        .toList();
+
 	}
 }
+
