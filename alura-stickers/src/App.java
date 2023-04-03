@@ -3,22 +3,23 @@ import java.net.URL;
 import java.util.List;
 
 public class App {
-    public static void main(String[] args) throws Exception {
+	public static void main(String[] args) throws Exception {
     	
-        System.out.println("Hello, World!");
+//    	 API api = API.IMDB_TOP_SERIES;
 
-        //fazer a conexão HTTP E BUSCAR OS TOP 250 FILMES
-        //String url = "https://raw.githubusercontent.com/alura-cursos/imersao-java-2-api/main/MostPopularTVs.json";
-        String url = "https://api.nasa.gov/planetary/apod?api_key=DEMO_KEY";
-       
-        var http = new ClienteHttp();
-        String json = http.buscaDados(url);
-        
-        // exibir e manipular 
-        var extrator = new ExtratorDeConteudoDaNasa();
-        List<Conteudo> conteudos = extrator.extraiConteudos(json);
-        
-        var geradora = new GeradoraDeFigurinhas();
+//    	 String url = api.getUrl("https://raw.githubusercontent.com/alura-cursos/imersao-java-2-api/main/MostPopularTVs.json");
+//         ExtratorDeConteudo extrator = api.getExtrator();
+    	 
+         String url = "https://api.nasa.gov/planetary/apod?api_key=DEMO_KEY";
+         ExtratorDeConteudo extrator = new ExtratorDeConteudoDaNasa();
+
+         var http = new ClienteHttp();
+         String json = http.buscaDados(url);
+
+         // exibir e manipular os dados 
+         List<Conteudo> conteudos = extrator.extraiConteudos(json);
+
+         var geradora = new GeradoraDeFigurinhas();
 
         for (int i = 0; i < 3; i++) {
 
