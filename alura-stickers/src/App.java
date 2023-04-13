@@ -10,8 +10,11 @@ public class App {
 //    	 String url = api.getUrl("https://raw.githubusercontent.com/alura-cursos/imersao-java-2-api/main/MostPopularTVs.json");
 //         ExtratorDeConteudo extrator = api.getExtrator();
     	 
-         String url = "https://api.nasa.gov/planetary/apod?api_key=DEMO_KEY";
-         ExtratorDeConteudo extrator = new ExtratorDeConteudoDaNasa();
+//         String url = "https://api.nasa.gov/planetary/apod?api_key=67HQTzWQUMls5Y494fX9Icxv1PHmXwWNOXextKOo";
+//         ExtratorDeConteudo extrator = new ExtratorDeConteudoDaNasa();
+
+         String url = "http://localhost:8080/linguagens";
+         ExtratorDeConteudo extrator = new ExtratorConteudoIMDB();
 
          var http = new ClienteHttp();
          String json = http.buscaDados(url);
